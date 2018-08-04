@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: lightcoral;
+            font-family: 'IM Fell Double Pica', serif;
+        }
+
+        #title {
+            text-align: center;
+            font-size: 50px;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border-style: double;
+            background-color: lightgray
+        }
+
+        .button {
+            padding-left: 50px;
+            padding-right: 50px;
+            font-size: 15px;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        #today {
+            background-color: black;
+            color: lightgrey;
+        }
+
+        #todayDiv {
+            background-color: lightgrey;
+            border-style: double;
+            font-size: 20px;
+            padding: 10px;
+            margin-top: 50px;
+        }
+
+        #text {
+            text-align: center;
+            padding-bottom: 30px;
+        }
+
+        #grkText {
+            text-align: center;
+        }
+
+        #date {
+            font-size: 25px;
+            margin-left: 100px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <link href="https://fonts.googleapis.com/css?family=IM+Fell+Double+Pica" rel="stylesheet">
+    <h1 id="title">Etruscan Brontoscopic Calendar Tool</h1>
+    <div id="container">
+        <a href=#>
+            <div class="button" id="today" onclick="clickToday()">Today's Brontoscope</div>
+        </a>
+        <a href=#>
+            <div class="button" id="lemmaSearch" onclick="clickLemmaSearch()">Search the Calendar by Lemma</div>
+        </a>
+        <a href=#>
+            <div class="button" id="dateSearch" onclick="clickDateSearch()">Search the Calendar by Date</div>
+        </a>
+        <a href=#>
+            <div class="button" id="forcast" onclick="clickForcast()">See Thunder in your local Forcast</div>
+        </a>
+        <a href=#>
+            <div class="button" id="learnMore" onclick="clickLearnMore()">Learn More</div>
+        </a>
+    </div>
+    <div id="date"></div>
+    <div id="todayDiv">
+        <div id="text"></div>
+        <div id="grkText"></div>
+    </div>
+    <div id="lemmaSearchDiv">
+        <div id="lemmaSearchDiv">
+            <p>Search for English lemma
+                <br>
+            </p>
+            <input type="text" id="lemmaSearchID" value="king">
+            <button onclick="lemmaSearch()">search</button>
+        </div>
+        <div id="lemmaSearchResultDiv">
+        </div>
+    </div>
+    <div id="dateSearchDiv">
+        <div id="searchDiv">
+            <p>Search for entry by date ( mm/dd )
+                <br>
+            </p>
+            <input type="text" id="search" value="01/01">
+            <button onclick="searchFunctions()">search</button>
+        </div>
+        <div id="searchResultDiv">
+            <p id="grkSearchResult"></p>
+            <p id="searchResult"></p>
+        </div>
+    </div>
+    <div id="forcastDiv">
+        <div id=forcastDisplayDiv></div>
+    </div>
+    <div id="learnMoreDiv"></div>
+
+    <script src="brontoscope.js"></script>
+
+    <script>
+        //hinc incipit novus caudex
+        function clickToday() {
+            normalizeButtons();
+            hideEverything();
+            document.getElementById("todayDiv").style = "display: block;"
+            document.getElementById("date").style = "display: block;"
+            document.getElementById("today").style = "background-color: black; color: lightgrey;"
+        }
+        function clickLemmaSearch() {
+            normalizeButtons();
+            hideEverything();
+            document.getElementById("lemmaSearchDiv").style = "display: block;"
+            document.getElementById("lemmaSearch").style = "background-color: black; color: lightgrey;"
+        }
+        function clickDateSearch() {
+            normalizeButtons();
+            hideEverything();
+            document.getElementById("dateSearchDiv").style = "display: block;"
+            document.getElementById("dateSearch").style = "background-color: black; color: lightgrey;"
+        }
+        function clickForcast() {
+            normalizeButtons();
+            hideEverything();
+            document.getElementById("forcastDiv").style = "display: block;"
+            document.getElementById("forcast").style = "background-color: black; color: lightgrey;"
+        }
+        function clickLearnMore() {
+            normalizeButtons();
+            hideEverything();
+            document.getElementById("learnMoreDiv").style = "display: block;"
+            document.getElementById("learnMore").style = "background-color: black; color: lightgrey;"
+        }
+        function normalizeButtons() {
+            document.getElementById("today").style = "background-color: lightgrey; color: black;";
+            document.getElementById("lemmaSearch").style = "background-color: lightgrey; color: black;";
+            document.getElementById("dateSearch").style = "background-color: lightgrey; color: black;";
+            document.getElementById("forcast").style = "background-color: lightgrey; color: black;";
+            document.getElementById("learnMore").style = "background-color: lightgrey; color: black;";
+        }
+        function hideEverything() {
+            document.getElementById("todayDiv").style = "display:none"
+            document.getElementById("lemmaSearchDiv").style = "display:none"
+            document.getElementById("dateSearchDiv").style = "display:none"
+            document.getElementById("forcastDiv").style = "display:none"
+            document.getElementById("learnMoreDiv").style = "display:none"
+            document.getElementById("date").style = "display:none"
+        }
+        //hinc incipit vetus caudex, 
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1;
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+        today = mm + "/" + dd;
+
+        function printBrontoscope() {
+            document.getElementById("text").textContent = calendar[today];
+        }
+
+        function printGrkBrontoscope() {
+            document.getElementById("grkText").textContent = grkCalendar[today];
+        }
+
+        function printDate() {
+            document.getElementById("date").innerHTML = today + " Today's Brontoscope:";
+        }
+
+        function searchFunctions() {
+            searchFunction()
+            grkSearchFunction()
+        }
+
+        function searchFunction() {
+            searchDate = document.getElementById("search").value;
+            document.getElementById("searchResult").innerHTML = calendar[searchDate];
+        }
+
+        function grkSearchFunction() {
+            grkSearchDate = document.getElementById("search").value;
+            document.getElementById("grkSearchResult").innerHTML = grkCalendar[grkSearchDate];
+        }
+
+        function lemmaSearch() {
+            document.getElementById('lemmaSearchResultDiv').innerHTML = '';
+            let lemma = document.getElementById("lemmaSearchID").value;
+            for (let date in calendar) {
+                if (calendar[date].includes(lemma)) {
+                    let lemmaParagraph = document.createElement('p');
+                    lemmaParagraph.textContent = date + ': ' + calendar[date];
+                    document.getElementById('lemmaSearchResultDiv').appendChild(lemmaParagraph);
+                }
+            }
+        }
+
+        function geolocate() {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+
+        function showPosition(position) {
+            let latAndLong = position.coords.latitude + "," + position.coords.longitude;
+            console.log(latAndLong);
+            fetch("https://api.weather.gov/points/" + latAndLong + "/forecast")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (jsonResponse) {
+                    console.log('jsonResponse:', jsonResponse);
+                    return jsonResponse;
+                })
+                .then(showForecast);
+        }
+
+        function showForecast(forecastInfo) {
+            let displayDiv = document.getElementById("forecastDisplayDiv");
+            let days = forecastInfo.properties.periods;
+            for (let i = 0; i < days.length; i++) {
+                if (days[i].shortForecast.includes("thunder") || days[i].shortForecast.includes("Thunder")) {
+                    if (displayDiv.children.length === 0) {
+                        let heading = document.createElement('h3');
+                        heading.textContent = "There is thunder on the horizon";
+                        displayDiv.appendChild(heading);
+                    }
+                    let p = document.createElement('p');
+                    p.textContent = days[i].startTime.slice(5, 10) + " (" + days[i].name + "): " + days[i].shortForecast;
+                    displayDiv.appendChild(p);
+                }
+            }
+        }
+
+        geolocate();
+        printDate();
+        printBrontoscope();
+        printGrkBrontoscope();
+        clickToday()
+
+    </script>
+</body>
+
+</html>

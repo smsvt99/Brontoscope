@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Daily Brontoscope</title>
+    <style>
+        #date {
+            font-size: 20px;
+            color: black;
+        }
+
+        #headline {
+            font-size: 20px;
+            color: black;
+        }
+
+        body {
+            background: lightcoral;
+
+        }
+
+        /* #div {
+                position: absolute;
+                top:100px;
+                left:100px;
+            } */
+
+        #texts {
+            border-width: 5px;
+            border-color: black;
+            border-style: double;
+            background: lightgrey;
+            font-size: 30px;
+            padding: 20px;
+            /* position: absolute;
+                left:200px;
+                top:200px; */
+            width: auto;
+            margin-top: 25px;
+            font-style: italic;
+        }
+
+        /* a {
+                position:absolute;
+                top:500px;
+                left: 325px;
+            } */
+
+        /* #searchDiv {
+                position: absolute;
+                top: 600px;
+                left: 100px;
+            } */
+
+        #searchResultDiv {
+            /* position:absolute;
+                top: 750px;
+                left: 200px; */
+            border-width: 5px;
+            border-color: black;
+            border-style: double;
+            background: lightgrey;
+            font-size: 30px;
+            padding: 20px;
+            font-style: italic;
+            width: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div">
+        <p id="date"></p>
+        <p id="headline"></p>
+    </div>
+    <div id="texts">
+        <p id="grkText"></p>
+        <p id="text"></p>
+    </div>
+    <a href="https://scholarworks.umass.edu/cgi/viewcontent.cgi?referer=https://www.google.com/&httpsredir=1&article=1137&context=etruscan_studies">
+        <p>Learn more about the Etruscan Brontoscopic Calendar</p>
+    </a>
+    <div id="searchDiv">
+        <p>Search for entry by date ( mm/dd )
+            <!-- <br> note: currently English only -->
+            <br>
+        </p>
+        <input type="text" id="search" value="01/01">
+        <button onclick="searchFunctions()">search</button>
+    </div>
+    <div id="searchResultDiv">
+        <p id="grkSearchResult"></p>
+        <p id="searchResult"></p>
+    </div>
+    <div id="lemmaSearchDiv">
+        <p>Search for English lemma
+            <br>
+        </p>
+        <input type="text" id="lemmaSearchID" value="king">
+        <button onclick="lemmaSearch()">search</button>
+    </div>
+    <div id="lemmaSearchResultDiv">
+        <!-- <p id="lemmaSearchResult"></p> -->
+    </div>
+    <div id="forecastDisplayDiv">
+    </div>
+
+    <script src="brontoscope.js"></script>
+
+    <script>
+
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1;
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+        today = mm + "/" + dd;
+
+        function printBrontoscope() {
+            document.getElementById("text").innerHTML = calendar[today];
+        }
+
+        function printGrkBrontoscope() {
+            document.getElementById("grkText").innerHTML = grkCalendar[today];
+        }
+
+        function printDate() {
+            document.getElementById("date").innerHTML = today;
+        }
+
+        function headline() {
+            document.getElementById("headline").innerHTML = "Today's Brontoscope:"
+        }
+
+        function searchFunctions() {
+            searchFunction()
+            grkSearchFunction()
+        }
+
+        function searchFunction() {
+            searchDate = document.getElementById("search").value;
+            document.getElementById("searchResult").innerHTML = calendar[searchDate];
+        }
+
+        function grkSearchFunction() {
+            grkSearchDate = document.getElementById("search").value;
+            document.getElementById("grkSearchResult").innerHTML = grkCalendar[grkSearchDate];
+        }
+
+        function lemmaSearch() {
+            document.getElementById('lemmaSearchResultDiv').innerHTML = '';
+            let lemma = document.getElementById("lemmaSearchID").value;
+            for (let date in calendar) {
+                if (calendar[date].includes(lemma)) {
+                    let lemmaParagraph = document.createElement('p');
+                    lemmaParagraph.textContent = date + ': ' + calendar[date];
+                    document.getElementById('lemmaSearchResultDiv').appendChild(lemmaParagraph);
+                }
+            }
+        }
+
+        function geolocate() {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+
+        function showPosition(position) {
+            let latAndLong = position.coords.latitude + "," + position.coords.longitude;
+            console.log(latAndLong);
+            fetch("https://api.weather.gov/points/" + latAndLong + "/forecast")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (jsonResponse) {
+                    console.log('jsonResponse:', jsonResponse);
+                    return jsonResponse;
+                })
+                .then(showForecast);
+        }
+
+        function showForecast(forecastInfo) {
+            let displayDiv = document.getElementById("forecastDisplayDiv");
+            let days = forecastInfo.properties.periods;
+            for (let i = 0; i < days.length; i++) {
+                if (days[i].shortForecast.includes("thunder") || days[i].shortForecast.includes("Thunder")) {
+                    if (displayDiv.children.length === 0) {
+                        let heading = document.createElement('h3');
+                        heading.textContent = "There is thunder on the horizon";
+                        displayDiv.appendChild(heading);
+                    }
+                    let p = document.createElement('p');
+                    p.textContent = days[i].startTime.slice(5, 10) + " (" + days[i].name + "): " + days[i].shortForecast;
+                    displayDiv.appendChild(p);
+                }
+            }
+        }
+
+        geolocate();
+        printDate();
+        printBrontoscope();
+        printGrkBrontoscope();
+        headline();
+
+    </script>
+</body>
+
+</html>
