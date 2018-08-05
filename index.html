@@ -68,19 +68,19 @@
 
 <body>
     <link href="https://fonts.googleapis.com/css?family=IM+Fell+Double+Pica" rel="stylesheet">
-    <h1 id="title">Etruscan Brontoscopic Calendar Tool</h1>
+    <h1 id="title">Etruscan Brontoscopic Calendar</h1>
     <div id="container">
         <a href=#>
             <div class="button" id="today" onclick="clickToday()">Today's Brontoscope</div>
         </a>
         <a href=#>
-            <div class="button" id="lemmaSearch" onclick="clickLemmaSearch()">Search the Calendar by Lemma</div>
+            <div class="button" id="lemmaSearch" onclick="clickLemmaSearch()">Search by Word</div>
         </a>
         <a href=#>
-            <div class="button" id="dateSearch" onclick="clickDateSearch()">Search the Calendar by Date</div>
+            <div class="button" id="dateSearch" onclick="clickDateSearch()">Search by Date</div>
         </a>
         <a href=#>
-            <div class="button" id="forcast" onclick="clickForcast()">See Thunder in your local Forcast</div>
+            <div class="button" id="forecast" onclick="clickForecast()">Thunder in your local Forecast</div>
         </a>
         <a href=#>
             <div class="button" id="learnMore" onclick="clickLearnMore()">Learn More</div>
@@ -115,8 +115,8 @@
             <p id="searchResult"></p>
         </div>
     </div>
-    <div id="forcastDiv">
-        <div id=forcastDisplayDiv></div>
+    <div id="forecastDiv">
+        <div id=forecastDisplayDiv></div>
     </div>
     <div id="learnMoreDiv"></div>
 
@@ -143,11 +143,11 @@
             document.getElementById("dateSearchDiv").style = "display: block;"
             document.getElementById("dateSearch").style = "background-color: black; color: lightgrey;"
         }
-        function clickForcast() {
+        function clickForecast() {
             normalizeButtons();
             hideEverything();
-            document.getElementById("forcastDiv").style = "display: block;"
-            document.getElementById("forcast").style = "background-color: black; color: lightgrey;"
+            document.getElementById("forecastDiv").style = "display: block;"
+            document.getElementById("forecast").style = "background-color: black; color: lightgrey;"
         }
         function clickLearnMore() {
             normalizeButtons();
@@ -159,14 +159,14 @@
             document.getElementById("today").style = "background-color: lightgrey; color: black;";
             document.getElementById("lemmaSearch").style = "background-color: lightgrey; color: black;";
             document.getElementById("dateSearch").style = "background-color: lightgrey; color: black;";
-            document.getElementById("forcast").style = "background-color: lightgrey; color: black;";
+            document.getElementById("forecast").style = "background-color: lightgrey; color: black;";
             document.getElementById("learnMore").style = "background-color: lightgrey; color: black;";
         }
         function hideEverything() {
             document.getElementById("todayDiv").style = "display:none"
             document.getElementById("lemmaSearchDiv").style = "display:none"
             document.getElementById("dateSearchDiv").style = "display:none"
-            document.getElementById("forcastDiv").style = "display:none"
+            document.getElementById("forecastDiv").style = "display:none"
             document.getElementById("learnMoreDiv").style = "display:none"
             document.getElementById("date").style = "display:none"
         }
