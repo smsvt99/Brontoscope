@@ -5,11 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Etruscan Brontoscopic Calendar</title>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
     <style>
         body {
-            background-color: lightcoral;
+            height: 100%;
+            background: linear-gradient( lightcoral, lavenderblush, seashell);
             font-family: 'IM Fell Double Pica', serif;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            /* border: black 5px solid; */
         }
 
         #title {
@@ -22,14 +28,29 @@
             flex-direction: row;
             justify-content: space-between;
             border-style: double;
-            background-color: lightgray
+            background-color: black;
+            margin: 75px;
+            margin-top: 25px;
+            height: 40px;
+            align-items: center;
+            border-radius: 3px;
         }
 
         .button {
-            padding-left: 50px;
-            padding-right: 50px;
-            font-size: 15px;
+            margin-left: 0;
+            margin-right: 0;
+            padding-left: 30px;
+            padding-right: 30px;
+            font-size: 21px;
+            cursor: pointer;
+            height: 100%;
+            display: block;
+            line-height: 2em;
+            border-right: 1px black solid;
+            background-color: lightblue;
+
         }
+        
 
         a {
             text-decoration: none;
@@ -41,27 +62,36 @@
             color: lightgrey;
         }
 
-        #todayDiv {
-            background-color: lightgrey;
-            border-style: double;
-            font-size: 20px;
-            padding: 10px;
+        .mainBox {
+            background-color: lightblue;
+            /* border-style: double; */
+            font-size: 25px;
+            padding: 30px;
+            margin-left: 150px;
+            margin-right: 150px;
             margin-top: 50px;
+            margin-bottom: 20px;
+            border: black 3px solid;
+            border-radius: 3px;
         }
 
         #text {
-            text-align: center;
-            padding-bottom: 30px;
+            text-align: left;
+            padding-bottom: 15px;
         }
 
         #grkText {
-            text-align: center;
+            text-align: left;
+            padding-top: 15px;
         }
 
-        #date {
+        .label {
             font-size: 25px;
             margin-left: 100px;
             margin-top: 50px;
+        }
+        .red {
+            color: red;
         }
     </style>
 </head>
@@ -70,98 +100,113 @@
     <link href="https://fonts.googleapis.com/css?family=IM+Fell+Double+Pica" rel="stylesheet">
     <h1 id="title">Etruscan Brontoscopic Calendar</h1>
     <div id="container">
-        <a href=#>
-            <div class="button" id="today" onclick="clickToday()">Today's Brontoscope</div>
-        </a>
-        <a href=#>
-            <div class="button" id="lemmaSearch" onclick="clickLemmaSearch()">Search by Word</div>
-        </a>
-        <a href=#>
-            <div class="button" id="dateSearch" onclick="clickDateSearch()">Search by Date</div>
-        </a>
-        <a href=#>
-            <div class="button" id="forecast" onclick="clickForecast()">Thunder in your local Forecast</div>
-        </a>
-        <a href=#>
-            <div class="button" id="learnMore" onclick="clickLearnMore()">Learn More</div>
-        </a>
+
+        <div class="button" id="today" onclick="clickToday()">Today's Brontoscope</div>
+        <div class="button" id="lemmaSearch" onclick="clickLemmaSearch()">Search by Word</div>
+        <div class="button" id="dateSearch" onclick="clickDateSearch()">Search by Date</div>
+        <div class="button" id="forecast" onclick="clickForecast()">Thunder in your local Forecast</div>
+        <div class="button" id="learnMore" onclick="clickLearnMore()">Learn More</div>
     </div>
-    <div id="date"></div>
-    <div id="todayDiv">
-        <div id="text"></div>
-        <div id="grkText"></div>
+    <div id="date" class="label"></div>
+    <div id="todayDiv" class='mainBox'>
+        <p id="dateHere"></p>
+        <ul>
+            <li id="text"></li>
+            <hr>
+            <li id="grkText"></li>
+            <ul>
     </div>
     <div id="lemmaSearchDiv">
         <div id="lemmaSearchDiv">
-            <p>Search for English lemma
+            <p class="label">Search for English or Greek word
                 <br>
+                <input type="text" id="lemmaSearchID" value="βασιλεὺς">
+                <button onclick="lemmaSearch()">search</button>
+
             </p>
-            <input type="text" id="lemmaSearchID" value="king">
-            <button onclick="lemmaSearch()">search</button>
+            <!-- <input type="text" id="lemmaSearchID" value="king"> -->
+            <!-- <button onclick="lemmaSearch()">search</button> -->
         </div>
-        <div id="lemmaSearchResultDiv">
+        <div id="lemmaSearchResultDiv" class="mainBox">
         </div>
     </div>
     <div id="dateSearchDiv">
         <div id="searchDiv">
-            <p>Search for entry by date ( mm/dd )
+            <p class="label">Search for entry by date ( mm/dd )
                 <br>
+                <input type="text" id="search" value="01/01">
+                <button onclick="searchFunctions()">search</button>
             </p>
-            <input type="text" id="search" value="01/01">
-            <button onclick="searchFunctions()">search</button>
+            <!-- <input type="text" id="search" value="01/01">
+            <button onclick="searchFunctions()">search</button> -->
         </div>
-        <div id="searchResultDiv">
-            <p id="grkSearchResult"></p>
-            <p id="searchResult"></p>
+        <div id="searchResultDiv" class="mainBox">
+            <p id="searchDateHere"></p>
+            <ul>
+                <li id="searchResult"></li>
+                <hr>
+                <li id="grkSearchResult"></li>
+            </ul>
         </div>
     </div>
     <div id="forecastDiv">
-        <div id=forecastDisplayDiv></div>
+        <div id=forecastDisplayDiv class="mainBox"></div>
     </div>
     <div id="learnMoreDiv"></div>
 
     <script src="brontoscope.js"></script>
 
     <script>
+    
         //hinc incipit novus caudex
+        let latAndLong;
+       
         function clickToday() {
             normalizeButtons();
             hideEverything();
             document.getElementById("todayDiv").style = "display: block;"
             document.getElementById("date").style = "display: block;"
-            document.getElementById("today").style = "background-color: black; color: lightgrey;"
+            document.getElementById("today").style = "background-color: black; color: seashell;"
         }
+        
         function clickLemmaSearch() {
             normalizeButtons();
             hideEverything();
             document.getElementById("lemmaSearchDiv").style = "display: block;"
-            document.getElementById("lemmaSearch").style = "background-color: black; color: lightgrey;"
+            document.getElementById("lemmaSearch").style = "background-color: black; color: seashell;"
         }
+
         function clickDateSearch() {
             normalizeButtons();
             hideEverything();
             document.getElementById("dateSearchDiv").style = "display: block;"
-            document.getElementById("dateSearch").style = "background-color: black; color: lightgrey;"
+            document.getElementById("dateSearch").style = "background-color: black; color: seashell;"
         }
+
         function clickForecast() {
+            // geolocate();
+            // fetchPlaceName();
             normalizeButtons();
             hideEverything();
             document.getElementById("forecastDiv").style = "display: block;"
-            document.getElementById("forecast").style = "background-color: black; color: lightgrey;"
+            document.getElementById("forecast").style = "background-color: black; color: seashell;"
         }
+
         function clickLearnMore() {
             normalizeButtons();
             hideEverything();
             document.getElementById("learnMoreDiv").style = "display: block;"
             document.getElementById("learnMore").style = "background-color: black; color: lightgrey;"
         }
+
         function normalizeButtons() {
-            document.getElementById("today").style = "background-color: lightgrey; color: black;";
-            document.getElementById("lemmaSearch").style = "background-color: lightgrey; color: black;";
-            document.getElementById("dateSearch").style = "background-color: lightgrey; color: black;";
-            document.getElementById("forecast").style = "background-color: lightgrey; color: black;";
-            document.getElementById("learnMore").style = "background-color: lightgrey; color: black;";
+            document.getElementById("today").style = "background-color: lightblue; color: black;";
+            document.getElementById("lemmaSearch").style = "background-color: lightblue; color: black;";
+            document.getElementById("dateSearch").style = "background-color: lightblue; color: black;";
+            document.getElementById("forecast").style = "background-color: lightblue; color: black;";
+            document.getElementById("learnMore").style = "background-color: lightblue; color: black;";
         }
+
         function hideEverything() {
             document.getElementById("todayDiv").style = "display:none"
             document.getElementById("lemmaSearchDiv").style = "display:none"
@@ -170,6 +215,7 @@
             document.getElementById("learnMoreDiv").style = "display:none"
             document.getElementById("date").style = "display:none"
         }
+
         //hinc incipit vetus caudex, 
         var today = new Date();
         var dd = today.getDate();
@@ -183,15 +229,16 @@
         today = mm + "/" + dd;
 
         function printBrontoscope() {
-            document.getElementById("text").textContent = calendar[today];
+            document.getElementById("text").innerHTML = calendar[today];
         }
 
         function printGrkBrontoscope() {
-            document.getElementById("grkText").textContent = grkCalendar[today];
+            document.getElementById("grkText").innerHTML = grkCalendar[today];
         }
 
         function printDate() {
-            document.getElementById("date").innerHTML = today + " Today's Brontoscope:";
+            document.getElementById('dateHere').innerHTML = today
+            document.getElementById("date").innerHTML = " Today's Brontoscope:";
         }
 
         function searchFunctions() {
@@ -201,32 +248,62 @@
 
         function searchFunction() {
             searchDate = document.getElementById("search").value;
-            document.getElementById("searchResult").innerHTML = calendar[searchDate];
+            document.getElementById("searchDateHere").innerHTML = searchDate
+            if (calendar[searchDate]) {
+                document.getElementById("searchResult").innerHTML = calendar[searchDate];
+            } else {
+                document.getElementById("searchResult").innerHTML = "Not a valid date; please follow the mm/dd. Note that the Etruscan Brontoscopic Calendar is comprised of twelve months of thirty days"
+            }
         }
 
         function grkSearchFunction() {
             grkSearchDate = document.getElementById("search").value;
-            document.getElementById("grkSearchResult").innerHTML = grkCalendar[grkSearchDate];
+            if (calendar[searchDate]) {
+                document.getElementById("grkSearchResult").innerHTML = grkCalendar[grkSearchDate];
+            } else {
+                document.getElementById("grkSearchResult").innerHTML = ""
+            }
         }
 
         function lemmaSearch() {
             document.getElementById('lemmaSearchResultDiv').innerHTML = '';
             let lemma = document.getElementById("lemmaSearchID").value;
             for (let date in calendar) {
-                if (calendar[date].includes(lemma)) {
-                    let lemmaParagraph = document.createElement('p');
-                    lemmaParagraph.textContent = date + ': ' + calendar[date];
-                    document.getElementById('lemmaSearchResultDiv').appendChild(lemmaParagraph);
+                if (calendar[date].includes(lemma) || grkCalendar[date].includes(lemma)) {
+                        let datum = document.createElement('p')
+                        datum.textContent = date
+
+                        let list = document.createElement('ul')
+
+                        let lemmaParagraph = document.createElement('li');
+                        lemmaParagraph.textContent = calendar[date];
+
+                        let grkLemmaParagraph = document.createElement('li')
+                        grkLemmaParagraph.textContent = grkCalendar[date];
+
+                        document.getElementById('lemmaSearchResultDiv').appendChild(datum);
+                        document.getElementById('lemmaSearchResultDiv').appendChild(list);
+                        list.appendChild(lemmaParagraph)
+                        list.appendChild(grkLemmaParagraph)
+                        document.getElementById('lemmaSearchResultDiv').innerHTML += '<hr>'
+                    
                 }
             }
+            highlightLemma();
+        }
+
+        function highlightLemma() {
+            let lemma = document.getElementById("lemmaSearchID").value;
+            let regex = new RegExp(lemma, 'ig')
+            document.getElementById('lemmaSearchResultDiv').innerHTML = document.getElementById('lemmaSearchResultDiv').innerHTML.replace(regex, '<span class="red">' + lemma + '</span>')
         }
 
         function geolocate() {
-            navigator.geolocation.getCurrentPosition(showPosition);
+            navigator.geolocation.getCurrentPosition(success);
         }
 
-        function showPosition(position) {
-            let latAndLong = position.coords.latitude + "," + position.coords.longitude;
+        function success(position) {
+            latAndLong = position.coords.latitude + "," + position.coords.longitude;
             console.log(latAndLong);
             fetch("https://api.weather.gov/points/" + latAndLong + "/forecast")
                 .then(function (response) {
@@ -242,8 +319,9 @@
         function showForecast(forecastInfo) {
             let displayDiv = document.getElementById("forecastDisplayDiv");
             let days = forecastInfo.properties.periods;
+
             for (let i = 0; i < days.length; i++) {
-                if (days[i].shortForecast.includes("thunder") || days[i].shortForecast.includes("Thunder")) {
+                if (days[i].shortForecast.includes("rain") || days[i].shortForecast.includes("Rain")) {
                     if (displayDiv.children.length === 0) {
                         let heading = document.createElement('h3');
                         heading.textContent = "There is thunder on the horizon";
@@ -256,11 +334,33 @@
             }
         }
 
+        // function fetchPlaceName() {
+        //     fetch("http://maps.googleapis.com/maps/api/geocode/json?latlng=" + latAndLong)
+        //         .then(function (response) {
+        //             return response.json();
+        //         })
+        //         .then(function (jsonResponse) {
+        //             return jsonResponse
+        //         })
+        //         .then(printPlaceName)
+        // }
+        
+        function printPlaceName(placeName) {
+            console.log(placeName)
+        }
+        
+        function initialize(){
+        lemmaSearch();
+        searchFunctions();
         geolocate();
         printDate();
         printBrontoscope();
         printGrkBrontoscope();
-        clickToday()
+        clickToday();
+        // fetchPlaceName();
+        }
+
+        initialize()
 
     </script>
 </body>
