@@ -157,10 +157,10 @@
     <script src="brontoscope.js"></script>
 
     <script>
-    
+
         //hinc incipit novus caudex
         let latAndLong;
-       
+        let locationName;
         function clickToday() {
             normalizeButtons();
             hideEverything();
@@ -168,7 +168,7 @@
             document.getElementById("date").style = "display: block;"
             document.getElementById("today").style = "background-color: black; color: seashell;"
         }
-        
+
         function clickLemmaSearch() {
             normalizeButtons();
             hideEverything();
@@ -270,23 +270,23 @@
             let lemma = document.getElementById("lemmaSearchID").value;
             for (let date in calendar) {
                 if (calendar[date].includes(lemma) || grkCalendar[date].includes(lemma)) {
-                        let datum = document.createElement('p')
-                        datum.textContent = date
+                    let datum = document.createElement('p')
+                    datum.textContent = date
 
-                        let list = document.createElement('ul')
+                    let list = document.createElement('ul')
 
-                        let lemmaParagraph = document.createElement('li');
-                        lemmaParagraph.textContent = calendar[date];
+                    let lemmaParagraph = document.createElement('li');
+                    lemmaParagraph.textContent = calendar[date];
 
-                        let grkLemmaParagraph = document.createElement('li')
-                        grkLemmaParagraph.textContent = grkCalendar[date];
+                    let grkLemmaParagraph = document.createElement('li')
+                    grkLemmaParagraph.textContent = grkCalendar[date];
 
-                        document.getElementById('lemmaSearchResultDiv').appendChild(datum);
-                        document.getElementById('lemmaSearchResultDiv').appendChild(list);
-                        list.appendChild(lemmaParagraph)
-                        list.appendChild(grkLemmaParagraph)
-                        document.getElementById('lemmaSearchResultDiv').innerHTML += '<hr>'
-                    
+                    document.getElementById('lemmaSearchResultDiv').appendChild(datum);
+                    document.getElementById('lemmaSearchResultDiv').appendChild(list);
+                    list.appendChild(lemmaParagraph)
+                    list.appendChild(grkLemmaParagraph)
+                    document.getElementById('lemmaSearchResultDiv').innerHTML += '<hr>'
+
                 }
             }
             highlightLemma();
@@ -311,9 +311,14 @@
                 })
                 .then(function (jsonResponse) {
                     console.log('jsonResponse:', jsonResponse);
+                    showForecast(jsonResponse)
+                    fetchPlaceName()
                     return jsonResponse;
                 })
-                .then(showForecast);
+                // .then(function(){
+                //     showForecast(jsonResponse)
+                //     fetchPlaceName()
+                // })               
         }
 
         function showForecast(forecastInfo) {
@@ -328,36 +333,42 @@
                         displayDiv.appendChild(heading);
                     }
                     let p = document.createElement('p');
-                    p.textContent = days[i].startTime.slice(5, 10) + " (" + days[i].name + "): " + days[i].shortForecast;
+                    let formattedDate = days[i].startTime.slice(5, 10).replace(/\-/gi, '/')
+                    p.textContent = formattedDate + " (" + days[i].name + "): " + days[i].shortForecast;
                     displayDiv.appendChild(p);
+                    displayDiv.innerHTML += '<hr>'
                 }
             }
         }
 
-        // function fetchPlaceName() {
-        //     fetch("http://maps.googleapis.com/maps/api/geocode/json?latlng=" + latAndLong)
-        //         .then(function (response) {
-        //             return response.json();
-        //         })
-        //         .then(function (jsonResponse) {
-        //             return jsonResponse
-        //         })
-        //         .then(printPlaceName)
-        // }
-        
+        function fetchPlaceName() {
+            fetch("https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=" + latAndLong + secretKeys)
+                .then(function (response) {
+                    return response.json();
+                })
+                // .then(function (jsonResponse) {
+                //     return jsonResponse
+                // })
+                .then(function(jsonResponse){
+                    locationName = jsonResponse.Response.View[0].Result[0].Location.Address.Label
+                    console.log(locationName)
+        })
+    }
+
         function printPlaceName(placeName) {
             console.log(placeName)
         }
-        
-        function initialize(){
-        lemmaSearch();
-        searchFunctions();
-        geolocate();
-        printDate();
-        printBrontoscope();
-        printGrkBrontoscope();
-        clickToday();
-        // fetchPlaceName();
+ 
+
+        function initialize() {
+            lemmaSearch();
+            searchFunctions();
+            geolocate();
+            printDate();
+            printBrontoscope();
+            printGrkBrontoscope();
+            clickToday();
+            // fetchPlaceName();
         }
 
         initialize()
