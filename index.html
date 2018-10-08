@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -20,7 +21,7 @@
 
         #title {
             text-align: center;
-            font-size: 50px;
+            font-size: 4vw;
         }
 
         #container {
@@ -31,6 +32,7 @@
             background-color: black;
             margin: 75px;
             margin-top: 25px;
+            margin-left: 5%;
             height: 40px;
             align-items: center;
             border-radius: 3px;
@@ -39,18 +41,20 @@
         .button {
             margin-left: 0;
             margin-right: 0;
-            padding-left: 30px;
-            padding-right: 30px;
-            font-size: 21px;
+            /* padding-left: 30px;
+            padding-right: 30px; */
+            /* font-size: 21px; */
+            font-size: 1.25vw;
             cursor: pointer;
             height: 100%;
             display: block;
             line-height: 2em;
             border-right: 1px black solid;
             background-color: lightblue;
+            width: 100%;
+            text-align: center;
 
         }
-        
 
         a {
             text-decoration: none;
@@ -67,8 +71,8 @@
             /* border-style: double; */
             font-size: 25px;
             padding: 30px;
-            margin-left: 150px;
-            margin-right: 150px;
+            margin-left: 5%;
+            margin-right: 5%;
             margin-top: 50px;
             margin-bottom: 20px;
             border: black 3px solid;
@@ -87,7 +91,7 @@
 
         .label {
             font-size: 25px;
-            margin-left: 100px;
+            margin-left: 5%;
             margin-top: 50px;
         }
         .red {
@@ -104,7 +108,7 @@
         <div class="button" id="today" onclick="clickToday()">Today's Brontoscope</div>
         <div class="button" id="lemmaSearch" onclick="clickLemmaSearch()">Search by Word</div>
         <div class="button" id="dateSearch" onclick="clickDateSearch()">Search by Date</div>
-        <div class="button" id="forecast" onclick="clickForecast()">Thunder in your local Forecast</div>
+        <div class="button" id="forecast" onclick="clickForecast()">Local Forecast</div>
         <div class="button" id="learnMore" onclick="clickLearnMore()">Learn More</div>
     </div>
     <div id="date" class="label"></div>
@@ -150,230 +154,20 @@
         </div>
     </div>
     <div id="forecastDiv">
-        <div id=forecastDisplayDiv class="mainBox"></div>
+        <div id=forecastDisplayDiv class="mainBox"><p id="loading">This may take a minute....</p></div>
     </div>
-    <div id="learnMoreDiv"></div>
-    <script src="secrets/secrets.js"></script>
+    <div id="learnMoreDiv" class="mainBox">
+        <small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+        The Etruscans were an Italian tribe which flourished in the earlier half of the first century BCE. They inhabited the northern part of the peninsula, roughly modern Tuscany, and were the dominant culture in Italy until their defeat by the Romans. The sack of Veii in 396 BCE, the wealthiest of the Etruscan cities, is the traditional symbolic date of the end of Etruscan hegemony. Thus the Etruscans were absorbed in the Roman Republic and were eventually given citizenship. They were considered by the Romans to be the most religious of peoples, and were especially preocupied with weather phenomena.<br><br><small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+
+   A millenium after fall of Veii, in the sixth century CE, a Byzantine antiquarian and historian named John The Lydian wrote a treatise on divine portents. This work contains the Greek text of the calendar as presented on this webpage. John writes that the calendar is "according to Figulus, the Roman, translated from the writings of Tages." Figulus, or Publius Nigidius Figulus, is a known historian, grammarian and friend of Cicero from the first century BCE. Some of his Latin is preserved in scattered fragments. Tages is an Etruscan god, a grandson of the Etruscan Jupiter, who taught the Etruscans the art of divination.<br><br><small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+
+   The Etruscan Brontoscopic calendar is comprised of 12 months of 30 days; it does not map perfectly onto our modern calendar. Consequently, months containing more than 30 days will have days without brontoscopes, and months with less than 30 days will have brontoscopes that are never displayed on the "Today's Brontoscope" tab. These are visible if searched for by date. The calendar in its entirety is visible if a single space (" ") is searched for in the word search.
+    </div>
+    <script src="./secrets/secrets.js"></script>
     <script src="brontoscope.js"></script>
+    <script src="main.js"></script>
 
-    <script>
-
-        //hinc incipit novus caudex
-        let latAndLong;
-        let locationName;
-        function clickToday() {
-            normalizeButtons();
-            hideEverything();
-            document.getElementById("todayDiv").style = "display: block;"
-            document.getElementById("date").style = "display: block;"
-            document.getElementById("today").style = "background-color: black; color: seashell;"
-        }
-
-        function clickLemmaSearch() {
-            normalizeButtons();
-            hideEverything();
-            document.getElementById("lemmaSearchDiv").style = "display: block;"
-            document.getElementById("lemmaSearch").style = "background-color: black; color: seashell;"
-        }
-
-        function clickDateSearch() {
-            normalizeButtons();
-            hideEverything();
-            document.getElementById("dateSearchDiv").style = "display: block;"
-            document.getElementById("dateSearch").style = "background-color: black; color: seashell;"
-        }
-
-        function clickForecast() {
-            // geolocate();
-            // fetchPlaceName();
-            normalizeButtons();
-            hideEverything();
-            document.getElementById("forecastDiv").style = "display: block;"
-            document.getElementById("forecast").style = "background-color: black; color: seashell;"
-        }
-
-        function clickLearnMore() {
-            normalizeButtons();
-            hideEverything();
-            document.getElementById("learnMoreDiv").style = "display: block;"
-            document.getElementById("learnMore").style = "background-color: black; color: lightgrey;"
-        }
-
-        function normalizeButtons() {
-            document.getElementById("today").style = "background-color: lightblue; color: black;";
-            document.getElementById("lemmaSearch").style = "background-color: lightblue; color: black;";
-            document.getElementById("dateSearch").style = "background-color: lightblue; color: black;";
-            document.getElementById("forecast").style = "background-color: lightblue; color: black;";
-            document.getElementById("learnMore").style = "background-color: lightblue; color: black;";
-        }
-
-        function hideEverything() {
-            document.getElementById("todayDiv").style = "display:none"
-            document.getElementById("lemmaSearchDiv").style = "display:none"
-            document.getElementById("dateSearchDiv").style = "display:none"
-            document.getElementById("forecastDiv").style = "display:none"
-            document.getElementById("learnMoreDiv").style = "display:none"
-            document.getElementById("date").style = "display:none"
-        }
-
-        //hinc incipit vetus caudex, 
-        var today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth() + 1;
-        if (dd < 10) {
-            dd = '0' + dd
-        }
-        if (mm < 10) {
-            mm = '0' + mm
-        }
-        today = mm + "/" + dd;
-
-        function printBrontoscope() {
-            document.getElementById("text").innerHTML = calendar[today];
-        }
-
-        function printGrkBrontoscope() {
-            document.getElementById("grkText").innerHTML = grkCalendar[today];
-        }
-
-        function printDate() {
-            document.getElementById('dateHere').innerHTML = today
-            document.getElementById("date").innerHTML = " Today's Brontoscope:";
-        }
-
-        function searchFunctions() {
-            searchFunction()
-            grkSearchFunction()
-        }
-
-        function searchFunction() {
-            searchDate = document.getElementById("search").value;
-            document.getElementById("searchDateHere").innerHTML = searchDate
-            if (calendar[searchDate]) {
-                document.getElementById("searchResult").innerHTML = calendar[searchDate];
-            } else {
-                document.getElementById("searchResult").innerHTML = "Not a valid date; please follow the mm/dd. Note that the Etruscan Brontoscopic Calendar is comprised of twelve months of thirty days"
-            }
-        }
-
-        function grkSearchFunction() {
-            grkSearchDate = document.getElementById("search").value;
-            if (calendar[searchDate]) {
-                document.getElementById("grkSearchResult").innerHTML = grkCalendar[grkSearchDate];
-            } else {
-                document.getElementById("grkSearchResult").innerHTML = ""
-            }
-        }
-
-        function lemmaSearch() {
-            document.getElementById('lemmaSearchResultDiv').innerHTML = '';
-            let lemma = document.getElementById("lemmaSearchID").value;
-            for (let date in calendar) {
-                if (calendar[date].includes(lemma) || grkCalendar[date].includes(lemma)) {
-                    let datum = document.createElement('p')
-                    datum.textContent = date
-
-                    let list = document.createElement('ul')
-
-                    let lemmaParagraph = document.createElement('li');
-                    lemmaParagraph.textContent = calendar[date];
-
-                    let grkLemmaParagraph = document.createElement('li')
-                    grkLemmaParagraph.textContent = grkCalendar[date];
-
-                    document.getElementById('lemmaSearchResultDiv').appendChild(datum);
-                    document.getElementById('lemmaSearchResultDiv').appendChild(list);
-                    list.appendChild(lemmaParagraph)
-                    list.appendChild(grkLemmaParagraph)
-                    document.getElementById('lemmaSearchResultDiv').innerHTML += '<hr>'
-
-                }
-            }
-            highlightLemma();
-        }
-
-        function highlightLemma() {
-            let lemma = document.getElementById("lemmaSearchID").value;
-            let regex = new RegExp(lemma, 'ig')
-            document.getElementById('lemmaSearchResultDiv').innerHTML = document.getElementById('lemmaSearchResultDiv').innerHTML.replace(regex, '<span class="red">' + lemma + '</span>')
-        }
-
-        function geolocate() {
-            navigator.geolocation.getCurrentPosition(success);
-        }
-
-        function success(position) {
-            latAndLong = position.coords.latitude + "," + position.coords.longitude;
-            console.log(latAndLong);
-            fetch("https://api.weather.gov/points/" + latAndLong + "/forecast")
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (jsonResponse) {
-                    console.log('jsonResponse:', jsonResponse);
-                    showForecast(jsonResponse)
-                    fetchPlaceName()
-                    return jsonResponse;
-                })
-                // .then(function(){
-                //     showForecast(jsonResponse)
-                //     fetchPlaceName()
-                // })               
-        }
-
-        function showForecast(forecastInfo) {
-            let displayDiv = document.getElementById("forecastDisplayDiv");
-            let days = forecastInfo.properties.periods;
-
-            for (let i = 0; i < days.length; i++) {
-                if (days[i].shortForecast.includes("rain") || days[i].shortForecast.includes("Rain")) {
-                    if (displayDiv.children.length === 0) {
-                        let heading = document.createElement('h3');
-                        heading.textContent = "There is thunder on the horizon";
-                        displayDiv.appendChild(heading);
-                    }
-                    let p = document.createElement('p');
-                    let formattedDate = days[i].startTime.slice(5, 10).replace(/\-/gi, '/')
-                    p.textContent = formattedDate + " (" + days[i].name + "): " + days[i].shortForecast;
-                    displayDiv.appendChild(p);
-                    displayDiv.innerHTML += '<hr>'
-                }
-            }
-        }
-
-        function fetchPlaceName() {
-            fetch("https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=" + latAndLong + secretKeys)
-                .then(function (response) {
-                    return response.json();
-                })
-                // .then(function (jsonResponse) {
-                //     return jsonResponse
-                // })
-                .then(function(jsonResponse){
-                    locationName = jsonResponse.Response.View[0].Result[0].Location.Address.Label
-                    console.log(locationName)
-        })
-    }
-
-        function printPlaceName(placeName) {
-            console.log(placeName)
-        }
- 
-
-        function initialize() {
-            lemmaSearch();
-            searchFunctions();
-            geolocate();
-            printDate();
-            printBrontoscope();
-            printGrkBrontoscope();
-            clickToday();
-            // fetchPlaceName();
-        }
-
-        initialize()
-
-    </script>
 </body>
 
 </html>
