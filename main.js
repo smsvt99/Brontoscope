@@ -1,6 +1,7 @@
 // import secretKeys from './secrets/secrets.js'
 let latAndLong;
 let locationName;
+window.addEventListener('resize', respond);
 
 function clickToday() {
     normalizeButtons();
@@ -203,16 +204,33 @@ function animateLoading(){
     }, 1000)
 }
 
+function respond(){
+    let pageWidth = document.documentElement.clientWidth;
+    if (pageWidth > 500){
+        document.getElementById('container').style.flexDirection = 'row'
+        let buttons =  document.getElementsByClassName('button');
+        for (let i = 0; i < buttons.length; i++){
+            buttons[i].style.fontSize = '21px'
+        }
+    }
+    if(pageWidth < 1060){
+        let buttons =  document.getElementsByClassName('button');
+        for (let i = 0; i < buttons.length; i++){
+            buttons[i].style.fontSize = '1.2vw'
+        }
+    }
+}
 
 function initialize() {
     lemmaSearch();
     searchFunctions();
-    geolocate();
+    // geolocate();
     printDate();
     printBrontoscope();
     printGrkBrontoscope();
     clickToday();
     animateLoading()
+    respond()
 }
 
 initialize()
