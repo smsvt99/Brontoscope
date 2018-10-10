@@ -149,7 +149,7 @@ function highlightLemma() {
 }
 
 function geolocate() {
-    navigator.geolocation.getCurrentPosition(success);
+    navigator.geolocation.getCurrentPosition(success, error);
 }
 
 function success(position) {
@@ -166,6 +166,9 @@ function success(position) {
             showForecast(jsonResponse, "thunder")
             return jsonResponse;
         })
+}
+function error(PositionError){
+   console.log(PositionError.message)
 }
 
 function showForecast(forecastInfo, string) {
