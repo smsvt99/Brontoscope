@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-const port = provess.end.PORT
+const port = process.end.PORT
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
