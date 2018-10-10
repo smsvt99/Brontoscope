@@ -1,9 +1,16 @@
-// import secretKeys from './secrets/secrets.js'
 let latAndLong;
 let locationName;
+let hamburgerMode = false
+let menu = 'closed'
+let forecastInfo;
+let showLoading = true;
+
 window.addEventListener('resize', respond);
+document.getElementById('hamburger').addEventListener('click', openMenu)
+
 
 function clickToday() {
+    toggleHamburger();
     normalizeButtons();
     hideEverything();
     document.getElementById("todayDiv").style = "display: block;"
@@ -12,6 +19,7 @@ function clickToday() {
 }
 
 function clickLemmaSearch() {
+    toggleHamburger();
     normalizeButtons();
     hideEverything();
     document.getElementById("lemmaSearchDiv").style = "display: block;"
@@ -19,6 +27,7 @@ function clickLemmaSearch() {
 }
 
 function clickDateSearch() {
+    toggleHamburger();
     normalizeButtons();
     hideEverything();
     document.getElementById("dateSearchDiv").style = "display: block;"
@@ -26,8 +35,7 @@ function clickDateSearch() {
 }
 
 function clickForecast() {
-    // geolocate();
-    // fetchPlaceName();
+    toggleHamburger();
     normalizeButtons();
     hideEverything();
     document.getElementById("forecastDiv").style = "display: block;"
@@ -35,6 +43,7 @@ function clickForecast() {
 }
 
 function clickLearnMore() {
+    toggleHamburger();
     normalizeButtons();
     hideEverything();
     document.getElementById("learnMoreDiv").style = "display: block;"
@@ -152,34 +161,58 @@ function success(position) {
             return response.json();
         })
         .then(function (jsonResponse) {
-            console.log('jsonResponse:', jsonResponse);
-            showForecast(jsonResponse)
+            forecastInfo = jsonResponse;
+            console.log('jsonResponse:', forecastInfo);
+            showForecast(jsonResponse, "thunder")
             return jsonResponse;
-        })            
+        })
 }
 
-function showForecast(forecastInfo) {
-    document.getElementById('loading').style.display = 'none'
+function showForecast(forecastInfo, string) {
+    if (document.getElementById('loading')) {
+        showLoading = false;
+        document.getElementById('loading').style.display = 'none'
+    }
     let displayDiv = document.getElementById("forecastDisplayDiv");
     let days = forecastInfo.properties.periods;
+    let heading = document.createElement('p');
+    heading.setAttribute('id', 'locationDisplay')
+    heading.textContent = "Thunder in the forecast for ";
+    displayDiv.appendChild(heading);
+    document.getElementById('locationDisplay').textContent += locationName.toUpperCase()
 
     for (let i = 0; i < days.length; i++) {
-        if (days[i].shortForecast.includes("rain") || days[i].shortForecast.includes("Rain")) {
-            if (displayDiv.children.length === 1) {
-                let heading = document.createElement('p');
-                heading.setAttribute('id','locationDisplay')
-                // heading.setAttribute('class', 'label')
-                heading.textContent = "Thunder in the forecast for ";
-                displayDiv.appendChild(heading);
-            }
+        if (days[i].shortForecast.includes(string) || days[i].shortForecast.includes(string.charAt(0).toUpperCase() + string.slice(1))) {
             let p = document.createElement('p');
             let formattedDate = days[i].startTime.slice(5, 10).replace(/\-/gi, '/')
             p.textContent = formattedDate + " (" + days[i].name + "): " + days[i].shortForecast;
             displayDiv.appendChild(p);
+            let list = document.createElement('ul')
+            displayDiv.appendChild(list)
+            let english = document.createElement('li')
+            english.textContent = calendar[formattedDate]
+            list.appendChild(english)
+            let greek = document.createElement('li')
+            greek.textContent = grkCalendar[formattedDate]
+            list.appendChild(greek)
             displayDiv.innerHTML += '<hr>'
         }
     }
-    document.getElementById('locationDisplay').textContent += locationName.toUpperCase()
+    if (document.getElementById("forecastDisplayDiv").children.length < 3) {
+        let noResults = document.createElement('p')
+        noResults.innerHTML = 'No ' + string + ' in the forcast. Search instead for <span class="option" onclick="searchSnow()" textDecoration="underline">snow</span> or <span class="option" onclick="searchRain()">rain?</span>'
+
+        document.getElementById("forecastDisplayDiv").appendChild(noResults)
+    }
+}
+function searchSnow() {
+    document.getElementById('forecastDisplayDiv').innerHTML = ''
+    showForecast(forecastInfo, "snow")
+}
+
+function searchRain() {
+    document.getElementById('forecastDisplayDiv').innerHTML = ''
+    showForecast(forecastInfo, "rain")
 }
 
 function fetchPlaceName() {
@@ -187,50 +220,77 @@ function fetchPlaceName() {
         .then(function (response) {
             return response.json();
         })
-        .then(function(jsonResponse){
+        .then(function (jsonResponse) {
             locationName = jsonResponse.Response.View[0].Result[0].Location.Address.Label
             console.log(locationName)
 
-})
+        })
 }
 
 
-function animateLoading(){
-    setInterval(function(){
-        document.getElementById('loading').textContent += ' . '
-    }, 250)
-    setInterval(function(){
-        document.getElementById('loading').textContent = 'This may take a minute'
-    }, 1000)
-}
+function animateLoading() {
+        let interval1 = setInterval(function () {
+            document.getElementById('loading').textContent += ' . ';
+            if (showLoading === false) {
+                clearInterval(interval1)
+        }}, 250)
+        let interval2 = setInterval(function () {
+            document.getElementById('loading').textContent = 'Did you allow geolocation? This may take a minute';
+            if (showLoading === false){
+                clearInterval(interval2)
+        }}, 1000)
+    }
 
-function respond(){
+function respond() {
     let pageWidth = document.documentElement.clientWidth;
-    if (pageWidth > 500){
-        document.getElementById('container').style.flexDirection = 'row'
-        let buttons =  document.getElementsByClassName('button');
-        for (let i = 0; i < buttons.length; i++){
-            buttons[i].style.fontSize = '21px'
+    let buttons = document.getElementsByClassName('button');
+    if (pageWidth < 760) {
+        hamburgerMode = true;
+        document.getElementById('container').style.flexDirection = 'column';
+        document.getElementById('container').style.display = 'none';
+        document.getElementById('container').style.position = 'absolute';
+        document.getElementById('container').style.right = '2px';
+        document.getElementById('hamburger').style.display = 'inline';
+    }
+    if (pageWidth > 760) {
+        hamburgerMode = false;
+        document.getElementById('container').style.flexDirection = 'row';
+        document.getElementById('container').style.display = 'flex';
+        document.getElementById('container').style.position = '';
+        document.getElementById('hamburger').style.display = 'none';
+    }
+}
+
+function openMenu() {
+    if (hamburgerMode) {
+        if (menu === 'closed') {
+            menu = 'open';
+            document.getElementById('container').style.display = 'flex';
+        } else if (menu === 'open') {
+            document.getElementById('container').style.display = 'none';
+            menu = 'closed';
         }
     }
-    if(pageWidth < 1060){
-        let buttons =  document.getElementsByClassName('button');
-        for (let i = 0; i < buttons.length; i++){
-            buttons[i].style.fontSize = '1.2vw'
-        }
+}
+
+function toggleHamburger() {
+    if (hamburgerMode === true) {
+        document.getElementById('container').style.display = 'none';
+        menu = 'closed';
+
     }
 }
 
 function initialize() {
     lemmaSearch();
     searchFunctions();
-    // geolocate();
+    geolocate();
     printDate();
     printBrontoscope();
     printGrkBrontoscope();
     clickToday();
-    animateLoading()
-    respond()
+    animateLoading();
+    respond();
 }
 
 initialize()

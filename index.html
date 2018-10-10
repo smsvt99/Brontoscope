@@ -21,7 +21,14 @@
 
         #title {
             text-align: center;
-            font-size: 4vw;
+            font-size: 6vw;
+        }
+        #hamburger{
+            float: right;
+            height: 8vw;
+            width: 8vw;
+            margin-right: 2%;
+            cursor: pointer;
         }
         #wrapper{
             text-align: center;
@@ -34,12 +41,14 @@
             justify-content: space-between;
             /* border-style: double; */
             /* background-color: black; */
-            margin: 75px;
+            /* margin: 75px; */
             margin-top: 25px;
+            margin-bottom: 75px;
             /* margin-left: 10%; */
             height: 40px;
             align-items: center;
             border-radius: 3px;
+            z-index: 2;
         }
 
         .button {
@@ -73,7 +82,7 @@
         .mainBox {
             background-color: lightblue;
             /* border-style: double; */
-            font-size: 25px;
+            font-size: 22px;
             padding: 30px;
             margin-left: 5%;
             margin-right: 5%;
@@ -101,16 +110,20 @@
         .red {
             color: red;
         }
+        .option {
+            text-decoration: underline;
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
     <link href="https://fonts.googleapis.com/css?family=IM+Fell+Double+Pica" rel="stylesheet">
-    <h1 id="title">Etruscan Brontoscopic Calendar</h1>
+    <h1 id="title">Etruscan Brontoscopic Calendar<img src="hamburger.png" id="hamburger"></h1>
     <div id='wrapper'>
     <div id="container">
 
-        <div class="button" id="today" onclick="clickToday()">Today's Brontoscope</div>
+        <div class="button" id="today" onclick="clickToday()">Today</div>
         <div class="button" id="lemmaSearch" onclick="clickLemmaSearch()">Search by Word</div>
         <div class="button" id="dateSearch" onclick="clickDateSearch()">Search by Date</div>
         <div class="button" id="forecast" onclick="clickForecast()">Local Forecast</div>
@@ -161,29 +174,29 @@
     </div>
     <div id="forecastDiv">
         <div id=forecastDisplayDiv class="mainBox">
-            <p id="loading">This may take a minute....</p>
+            <p id="loading">Did you allow geolocation? This may take a minute....</p>
         </div>
     </div>
     <div id="learnMoreDiv" class="mainBox">
         <small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
-        The Etruscans were an Italian tribe which flourished in the earlier half of the first century BCE. They
+        The Etruscans were an Italian tribe which flourished in the earlier half of the first millenium BCE. They
         inhabited the northern part of the peninsula, roughly modern Tuscany, and were the dominant culture in Italy
         until their defeat by the Romans. The sack of Veii, the wealthiest of the Etruscan cities, in 396 BCE is the
-        traditional symbolic date of the end of Etruscan hegemony. Thus the Etruscans were absorbed in the Roman
+        traditional, symbolic date of the end of Etruscan hegemony. Thus the Etruscans were absorbed into the Roman
         Republic and were eventually given citizenship. They were considered by the Romans to be the most religious of
         peoples, and were especially preocupied with weather phenomena.<br><br><small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
 
         A millenium after fall of Veii, in the sixth century CE, a Byzantine antiquarian and historian named John The
-        Lydian wrote a treatise on divine portents. This work contains the Greek text of the calendar as presented on
+        Lydian wrote Περὶ Διοσημείων, "On Divine Portents." This work contains the Greek text of the calendar as presented on
         this webpage. John writes that the calendar is "according to Figulus, the Roman, translated from the writings
         of Tages." Figulus, or Publius Nigidius Figulus, is a known historian, grammarian and friend of Cicero from the
         first century BCE. Some of his Latin is preserved in scattered fragments. Tages is an Etruscan god, a grandson
-        of the Etruscan Jupiter, who taught the Etruscans the art of divination.<br><br><small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+        of the Etruscan Jupiter, who taught the Etruscans the art of divination. Thus the text of John's book is a translation of a translation, and the English text here a translation of a translation of a translation.<br><br><small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
 
         The Etruscan Brontoscopic calendar is comprised of 12 months of 30 days; it does not map perfectly onto our
         modern calendar. Consequently, months containing more than 30 days will have days without brontoscopes, and
-        months with less than 30 days will have brontoscopes that are never displayed on the "Today's Brontoscope" tab.
-        These are visible if searched for by date. The calendar in its entirety is visible if a single space (" ") is
+        months with less than 30 days will have brontoscopes that are never displayed on the "Today" tab.
+        These are visible if searched for by date. If you wish to see the calendar in its entirety, it is visible if a single space (" ") is
         searched for in the word search.
     </div>
     <script src="./secrets/secrets.js"></script>
