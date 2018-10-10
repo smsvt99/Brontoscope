@@ -216,7 +216,7 @@ function searchRain() {
 }
 
 function fetchPlaceName() {
-    fetch("https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=" + latAndLong + '&mode=retrieveAddresses&maxresults=1&gen=9&app_id=oshRgeWLmEdGVVYfYINW&app_code=jsBx3mLu9AIJ9BuVeCpQig')
+    fetch("https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=" + latAndLong + secretKeys)
         .then(function (response) {
             return response.json();
         })
