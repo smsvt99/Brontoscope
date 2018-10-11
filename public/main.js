@@ -205,7 +205,7 @@ function showForecast(forecastInfo, string) {
             displayDiv.innerHTML += '<hr>'
         }
     }
-    if (document.getElementById("forecastDisplayDiv").children.length < 3) {
+    if (document.getElementById("forecastDisplayDiv").children.length < 4) {
         let noResults = document.createElement('p')
         noResults.innerHTML = 'No ' + string + ' in the forcast. Search instead for <span class="option" onclick="searchSnow()" textDecoration="underline">snow</span> or <span class="option" onclick="searchRain()">rain?</span> (just to see how the feature works)'
 
