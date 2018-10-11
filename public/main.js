@@ -101,7 +101,7 @@ function searchFunctions() {
 function searchFunction() {
     searchDate = document.getElementById("search").value;
     document.getElementById("searchDateHere").innerHTML = searchDate
-    if (calendar[searchDate]) {
+    if (calendar[searchDate] && searchDate.length === 5) {
         document.getElementById("searchResult").innerHTML = calendar[searchDate];
     } else {
         document.getElementById("searchResult").innerHTML = "Not a valid date; please follow the mm/dd. Note that the Etruscan Brontoscopic Calendar is comprised of twelve months of thirty days"
@@ -119,31 +119,33 @@ function grkSearchFunction() {
 
 function lemmaSearch() {
     document.getElementById('lemmaSearchResultDiv').innerHTML = '';
-    let lemma = document.getElementById("lemmaSearchID").value;
-    for (let date in calendar) {
-        if (calendar[date].includes(lemma) || grkCalendar[date].includes(lemma)) {
-            let datum = document.createElement('p')
-            datum.textContent = date
+    let lemma = document.getElementById("lemmaSearchID").value
+    if (lemma.length !== 0) {
 
-            let list = document.createElement('ul')
+        for (let date in calendar) {
+            if (calendar[date].includes(lemma) || grkCalendar[date].includes(lemma)) {
+                let datum = document.createElement('p')
+                datum.textContent = date
 
-            let lemmaParagraph = document.createElement('li');
-            lemmaParagraph.textContent = calendar[date];
+                let list = document.createElement('ul')
 
-            let grkLemmaParagraph = document.createElement('li')
-            grkLemmaParagraph.textContent = grkCalendar[date];
+                let lemmaParagraph = document.createElement('li');
+                lemmaParagraph.textContent = calendar[date];
 
-            document.getElementById('lemmaSearchResultDiv').appendChild(datum);
-            document.getElementById('lemmaSearchResultDiv').appendChild(list);
-            list.appendChild(lemmaParagraph)
-            list.appendChild(grkLemmaParagraph)
-            document.getElementById('lemmaSearchResultDiv').innerHTML += '<hr>'
+                let grkLemmaParagraph = document.createElement('li')
+                grkLemmaParagraph.textContent = grkCalendar[date];
 
+                document.getElementById('lemmaSearchResultDiv').appendChild(datum);
+                document.getElementById('lemmaSearchResultDiv').appendChild(list);
+                list.appendChild(lemmaParagraph)
+                list.appendChild(grkLemmaParagraph)
+                document.getElementById('lemmaSearchResultDiv').innerHTML += '<hr>'
+
+            }
         }
+        highlightLemma();
     }
-    highlightLemma();
 }
-
 function highlightLemma() {
     let lemma = document.getElementById("lemmaSearchID").value;
     let regex = new RegExp(lemma, 'ig')
@@ -169,7 +171,7 @@ function success(position) {
             return jsonResponse;
         })
 }
-function error(PositionError){
+function error(PositionError) {
     clearInterval(interval1)
     clearInterval(interval2)
     document.getElementById('loading').innerHTML = "Feature is currently unavailable because geolocation has failed. This may be because you denied the page permission to access your current location, because of location settings on your device or browser, or because of browser compatability issues. See error message below: <ul><li>" + PositionError.message + "</li></ul>"
@@ -236,15 +238,15 @@ function fetchPlaceName() {
 
 
 function animateLoading() {
-        interval1 = setInterval(function () {
-            document.getElementById('loading').textContent += ' . ';
-             
-        }, 250)
-        interval2 = setInterval(function () {
-            document.getElementById('loading').textContent = 'Did you allow geolocation? This may take a minute';
-            
-        }, 1000)
-    }
+    interval1 = setInterval(function () {
+        document.getElementById('loading').textContent += ' . ';
+
+    }, 250)
+    interval2 = setInterval(function () {
+        document.getElementById('loading').textContent = 'Did you allow geolocation? This may take a minute';
+
+    }, 1000)
+}
 
 function respond() {
     let pageWidth = document.documentElement.clientWidth;
