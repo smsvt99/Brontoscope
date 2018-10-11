@@ -4,6 +4,8 @@ let hamburgerMode = false
 let menu = 'closed'
 let forecastInfo;
 let showLoading = true;
+let interval1;
+let interval2;
 
 window.addEventListener('resize', respond);
 document.getElementById('hamburger').addEventListener('click', openMenu)
@@ -168,7 +170,9 @@ function success(position) {
         })
 }
 function error(PositionError){
-   console.log(PositionError.message)
+    clearInterval(interval1)
+    clearInterval(interval2)
+    document.getElementById('loading').innerHTML = "Feature is currently unavailable because geolocation has failed. This may be because you denied the page permission to access your current location, because of location settings on your device or browser, or because of browser compatability issues. See error message below: <ul><li>" + PositionError.message + "</li></ul>"
 }
 
 function showForecast(forecastInfo, string) {
@@ -203,7 +207,7 @@ function showForecast(forecastInfo, string) {
     }
     if (document.getElementById("forecastDisplayDiv").children.length < 3) {
         let noResults = document.createElement('p')
-        noResults.innerHTML = 'No ' + string + ' in the forcast. Search instead for <span class="option" onclick="searchSnow()" textDecoration="underline">snow</span> or <span class="option" onclick="searchRain()">rain?</span>'
+        noResults.innerHTML = 'No ' + string + ' in the forcast. Search instead for <span class="option" onclick="searchSnow()" textDecoration="underline">snow</span> or <span class="option" onclick="searchRain()">rain?</span> (just to see how the feature works)'
 
         document.getElementById("forecastDisplayDiv").appendChild(noResults)
     }
@@ -232,16 +236,14 @@ function fetchPlaceName() {
 
 
 function animateLoading() {
-        let interval1 = setInterval(function () {
+        interval1 = setInterval(function () {
             document.getElementById('loading').textContent += ' . ';
-            if (showLoading === false) {
-                clearInterval(interval1)
-        }}, 250)
-        let interval2 = setInterval(function () {
+             
+        }, 250)
+        interval2 = setInterval(function () {
             document.getElementById('loading').textContent = 'Did you allow geolocation? This may take a minute';
-            if (showLoading === false){
-                clearInterval(interval2)
-        }}, 1000)
+            
+        }, 1000)
     }
 
 function respond() {

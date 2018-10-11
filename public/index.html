@@ -121,14 +121,14 @@
     <link href="https://fonts.googleapis.com/css?family=IM+Fell+Double+Pica" rel="stylesheet">
     <h1 id="title">Etruscan Brontoscopic Calendar<img src="hamburger.png" id="hamburger"></h1>
     <div id='wrapper'>
-    <div id="container">
+        <div id="container">
 
-        <div class="button" id="today" onclick="clickToday()">Today</div>
-        <div class="button" id="lemmaSearch" onclick="clickLemmaSearch()">Search by Word</div>
-        <div class="button" id="dateSearch" onclick="clickDateSearch()">Search by Date</div>
-        <div class="button" id="forecast" onclick="clickForecast()">Local Forecast</div>
-        <div class="button" id="learnMore" onclick="clickLearnMore()">Learn More</div>
-    </div>
+            <div class="button" id="today" onclick="clickToday()">Today</div>
+            <div class="button" id="lemmaSearch" onclick="clickLemmaSearch()">Search by Word</div>
+            <div class="button" id="dateSearch" onclick="clickDateSearch()">Search by Date</div>
+            <div class="button" id="forecast" onclick="clickForecast()">Local Forecast</div>
+            <div class="button" id="learnMore" onclick="clickLearnMore()">Learn More</div>
+        </div>
     </div>
     <div id="date" class="label"></div>
     <div id="todayDiv" class='mainBox'>
@@ -174,29 +174,44 @@
     </div>
     <div id="forecastDiv">
         <div id=forecastDisplayDiv class="mainBox">
-            <p id="loading">Did you allow geolocation? This may take a minute....</p>
+            <div id="loading">This may take a minute....</div>
+            <div id="error"></div>
         </div>
     </div>
     <div id="learnMoreDiv" class="mainBox">
         <small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+        The ancient European cultures were ripe with pseudoscience, superstition, and methods of divination. Among the
+        more famous examples, such as Augury, divination through the observation of birds; Hepatoscopy, divination
+        through the inspection of animal livers; and Horoscopy, divination through time and the alignment of celestial
+        objects, the Etruscans practiced Brontoscopy, divination through the observation of thunder. The Etruscan
+        Brontoscopic Calendar is a collection of 360 (one for each day of their year, see below) fortune-cookie-style
+        conditional sentances, each beginning "If it should thunder...."
+        <br><br><small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
         The Etruscans were an Italian tribe which flourished in the earlier half of the first millenium BCE. They
         inhabited the northern part of the peninsula, roughly modern Tuscany, and were the dominant culture in Italy
         until their defeat by the Romans. The sack of Veii, the wealthiest of the Etruscan cities, in 396 BCE is the
         traditional, symbolic date of the end of Etruscan hegemony. Thus the Etruscans were absorbed into the Roman
-        Republic and were eventually given citizenship. They were considered by the Romans to be the most religious of
-        peoples, and were especially preocupied with weather phenomena.<br><br><small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+        Republic, given citizenship, and became the progenitors of many notable Roman families. Rome borrowed heavily
+        from Etruscan culture (then synonymous with religion), and her earliest interactions with Greek culture were
+        also through the Eutruscans. They were famed among the Romans for their religiosity, and Etruscan priesthoods
+        were (openly) active in Rome until they were finally forbidden by the Christian emperor Theodosius in the late fourth
+        century CE.<br><br><small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
 
-        A millenium after fall of Veii, in the sixth century CE, a Byzantine antiquarian and historian named John The
-        Lydian wrote Περὶ Διοσημείων, "On Divine Portents." This work contains the Greek text of the calendar as presented on
+        A millenium after fall of Veii, in the sixth century CE, a Byzantine antiquarian and historian named John the
+        Lydian wrote Περὶ Διοσημείων, "On Divine Portents." This work contains the Greek text of the calendar as
+        presented on
         this webpage. John writes that the calendar is "according to Figulus, the Roman, translated from the writings
         of Tages." Figulus, or Publius Nigidius Figulus, is a known historian, grammarian and friend of Cicero from the
-        first century BCE. Some of his Latin is preserved in scattered fragments. Tages is an Etruscan god, a grandson
-        of the Etruscan Jupiter, who taught the Etruscans the art of divination. Thus the text of John's book is a translation of a translation, and the English text here a translation of a translation of a translation.<br><br><small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+        first century BCE. His writing is preserved only in scattered fragments. Tages is an Etruscan god, a grandson
+        of the Etruscan Jupiter, who, as the story goes, taught the Etruscans the art of divination after having
+        transformed from a clod of dirt and revealing himself to a plowman. Thus the text of John's book is a
+        translation of a translation, and the English text here a translation of a translation of a translation.<br><br><small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
 
         The Etruscan Brontoscopic calendar is comprised of 12 months of 30 days; it does not map perfectly onto our
         modern calendar. Consequently, months containing more than 30 days will have days without brontoscopes, and
         months with less than 30 days will have brontoscopes that are never displayed on the "Today" tab.
-        These are visible if searched for by date. If you wish to see the calendar in its entirety, it is visible if a single space (" ") is
+        These are visible if searched for by date. If you wish to see the calendar in its entirety, it is visible if a
+        single space (" ") is
         searched for in the word search.
     </div>
     <!-- <script src="secrets/secrets.js"></script> -->
