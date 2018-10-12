@@ -174,7 +174,7 @@ function success(position) {
 function error(PositionError) {
     clearInterval(interval1)
     clearInterval(interval2)
-    document.getElementById('loading').innerHTML = "Feature is currently unavailable because geolocation has failed. This may be because you denied the page permission to access your current location, because of location settings on your device or browser, or because of browser compatability issues. See error message below: <ul><li>" + PositionError.message + "</li></ul>"
+    document.getElementById('loading').innerHTML = "Feature is currently unavailable because geolocation has failed. This may be because you denied the page permission to access your current location, because of location settings on your device or browser, or because of browser compatibility issues. See error message below: <ul><li>" + PositionError.message + "</li></ul>"
 }
 
 function showForecast(forecastInfo, string) {
