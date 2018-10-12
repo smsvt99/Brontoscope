@@ -200,7 +200,7 @@ let calendar = {
     "07/13":"If in any way it should thunder, there will appear the most poisonous reptiles.",
     "07/14":"If in any way it should thunder, it shows one man will come to power over many. But this man is most unjust in state affairs.",
     "07/15":"If in any way it should thunder, there will be dissension among the common people and a scarcity of grain.",
-    "07/16":"If in any way it should thunder, the king of the East . . . will be overcome [by?] war . . .5 and disease will be received from dry hot weather.",
+    "07/16":"If in any way it should thunder, the king of the East . . . will be overcome [by?] war . . . and disease will be received from dry hot weather.",
     "07/17":"If in any way it should thunder, it signifies the succession of a great ruler.",
     "07/18":"If in any way it should thunder, it threatens a dearth of crops due to rainy weather.",
     "07/19":"If in any way it should thunder, it signifies war and the destruction of the powerful. On the other hand, there will be a plenty of cereals.",
