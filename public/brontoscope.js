@@ -29,6 +29,7 @@ let calendar = {
     "01/28":"If it thunders, the fish of the sea shall be plentiful, but yet the flocks will be ruined by death.",
     "01/29":"If it thunders, the condition of the air oppressive, and disease-bearing for all.",
     "01/30":" If it thunders, it threatens plentiful death.",
+    "01/31":"No entry today; the Brontoscopic Calendar comprises twelve months of thirty days.",
 
     "02/01":"If it thunders, it threatens war and the ruin of wealthy men.",
     "02/02":"If it thunders, wheat in less supply, but barley better, and an increase in livestock, but there will be a wasting away of humans.",
@@ -91,6 +92,7 @@ let calendar = {
     "03/28":"If it thunders, there will be a plenty of marine fish.",
     "03/29":"If it thunders, the women shall obtain the better reputation.",
     "03/30":"If it thunders, there will be some powerful, selfpossessed man of the kingdom, through whom [will come] good cheer.",
+    "03/31":"No entry today; the Brontoscopic Calendar comprises twelve months of thirty days.",
 
     "04/01":"If it thunders, it threatens civil discord and the downfalls of fortunes.",
     "04/02":"If it thunders, sign of justice, bearing prosperity to good men, and paltry things to evil men.",
@@ -153,6 +155,7 @@ let calendar = {
     "05/28":"If it thunders, it shall be the same.",
     "05/29":"If it thunders, it signals northern war, but not dangerous for commerce.",
     "05/30":"If it thunders, the sprouting crops will be chilled by the winds.",
+    "05/31":"No entry today; the Brontoscopic Calendar comprises twelve months of thirty days.",
     
     "06/01":"If in any way it should thunder, there will be an abundance of fruits, with the exception of barley; but dangerous diseases will be inflicted upon bodies.",
     "06/02":"If in any way it should thunder, women in labor will have an easy delivery, but there will be abortion of cattle, yet there will be an abundance of fish.",
@@ -215,6 +218,7 @@ let calendar = {
     "07/28":"If in any way it should thunder, there will be a dearth of water and a plague of poisonous reptiles.",
     "07/29":"If in any way it should thunder, it signifies a good harvest.",
     "07/30":"If in any way it should thunder, men bent on vengeance shall slip into the worst kind of treachery.",
+    "07/31":"No entry today; the Brontoscopic Calendar comprises twelve months of thirty days.",
 
     "08/01":"If in any way it should thunder, the affairs of the state will be slightly better, and there will be plenty.",
     "08/02":"If in any way it should thunder, it threatens both diseases and at the same time a dearth of the necessities of life.",
@@ -245,7 +249,8 @@ let calendar = {
     "08/27":"If in any way it should thunder, it threatens at once wars and treachery.",
     "08/28":"If in any way it should thunder, it signals both an abundance of crops and a loss by death of cattle.",
     "08/29":"If in any way it should thunder, it signals no sort of reversal.",
-    "08/30":" If in any way it should thunder, it threatens diseases in the city over which it [the thunder] is cast down.",
+    "08/30":"If in any way it should thunder, it threatens diseases in the city over which it [the thunder] is cast down.",
+    "08/31":"No entry today; the Brontoscopic Calendar comprises twelve months of thirty days.",
     
     "09/01":"If in any way it should thunder, it signifies both a good harvest and good cheer.",
     "09/02":"If in any way it should thunder, there will be discord among the common people.",
@@ -308,6 +313,7 @@ let calendar = {
     "10/28":"If it thunders, there will be a dearth of the necessities.",
     "10/29":"If it thunders, a year of serious disease.",
     "10/30":". If it thunders, it signifies not merely prosperity, but even fewer enemies, and good cheer for the state.",
+    "10/31":"No entry today; the Brontoscopic Calendar comprises twelve months of thirty days. Happy Halloween from your friends at EBC!",
     
     "11/01":"If it thunders, it signifies discord for the city.",
     "11/02":"If it thunders, it foretells prosperity.",
@@ -370,6 +376,7 @@ let calendar = {
     "12/28":"If it thunders, the hatching of locusts.",
     "12/29":"If it thunders, it signifies the most healthful leanness for the bodies.",
     "12/30":"If it thunders, it signifies a rebellion against the kingdom and, reasonably, war.",
+    "12/31":"No entry today; the Brontoscopic Calendar comprises twelve months of thirty days. Happy New Year from your friends at EBC!"
 
 }
 
@@ -404,6 +411,7 @@ let grkCalendar = {
     "01/28":"εἰ βροντήσῃ, οἱ μὲν ἐνάλιοι ἰχθύες ἐπιδώσουσι, τὰ δὲ θρέμματα φθαρήσεται.",
     "01/29":"εἰ βροντήσῃ, λοιμικὸν καὶ νοσῶδες ἐπὶ πᾶσι τὸ τοῦ ἀέρος κατάστημα.",
     "01/30":"εἰ βροντήσῃ, θάνατον συχνὸν ἀπειλεῖ.",
+    "01/31":"οὐκ ἐστὶ σήμερον βροντοσκοπία.",
 
     "02/01":"Εἰ βροντήσῃ, πόλεμον καὶ πτῶσιν ἀνδρῶν εὐπόρων ἀπειλεῖ.",
     "02/02":"εἰ βροντήσῃ, ὁ μὲν σῖτος ἐλάττων, ἡ δὲ κριθὴ κρείττων, καὶ θηρίων μὲν αὔξησις, φθίσις δὲ ἀνθρώπων ἔσται.",
@@ -466,6 +474,7 @@ let grkCalendar = {
     "03/28":"εἰ βροντήσῃ, ἀφθονία ἰχθύων θαλαττίων ἔσται.",
     "03/29":"εἰ βροντήσῃ, αἱ γυναῖκες τῆς κρείττονος δόξης ἀνθέξονται.",
     "03/30":"εἰ βροντήσῃ, δυνατός τις τῆς βασιλείας ἐγκρατὴς ἔσται, δι’ οὗ εὐφροσύνη.",
+    "03/31":"οὐκ ἐστὶ σήμερον βροντοσκοπία.",
 
     "04/01":"εἰ βροντήσῃ, δυνατός τις τῆς βασιλείας ἐγκρατὴς ἔσται, δι’ οὗ εὐφροσύνη.",
     "04/02":"εἰ βροντήσῃ, δίκης σημεῖον, ἐσθλοῖς ἐσθλὰ φερούσης καὶ φαύλοις φαῦλα.",
@@ -528,6 +537,7 @@ let grkCalendar = {
     "05/28":"εἰ βροντήσῃ, ὡσαύτως ἔσται.",
     "05/29":"εἰ βροντήσῃ, πόλεμον ἀρκτῷον σημαίνει, ἀλλ’ ἀκίνδυνον τοῖς πράγμασιν.",
     "05/30":"εἰ βροντήσῃ, τὰ φυτὰ τῷ ἀνέμῳ συντριβήσεται. Ταύτην τὴν ἐφήμερον βροντοσκοπίαν ὁ Νιγίδιος οὐ καθολικὴν ἀλλὰ μόνης εἶναι τῆς Ῥώμης ἔκρινεν.",
+    "05/31":"οὐκ ἐστὶ σήμερον βροντοσκοπία.",
     
     "06/01":"ἐὰν βροντήσῃ, τῶν καρπῶν εὐφορία ἔσται, ἐξῃρημένων κριθῶν· νοσήματα δὲ ἐπισφαλῆ τοῖς σώμασιν ἐπισκήψει.",
     "06/02":"ἐὰν βροντήσῃ, ταῖς μὲς ὠδινούσαις ἀπαλλαγὴ μᾶλλον ῥᾳδία, τοῖς δὲ θρέμμασι φθορά, ἰχθύων γε μὴν ἀφθονία ἔσται.",
@@ -590,6 +600,7 @@ let grkCalendar = {
     "07/28":"ἐὰν βροντήσῃ, ἔνδεια ὑδάτων καὶ ὄχλος ἑρπετῶν ἐπιβλαβῶν ἔσται.",
     "07/29":"ἐὰν βροντήσῃ, εὐετηρίαν δηλοῖ.",
     "07/30":"ἐὰν βροντήσῃ, οἱ ἄνθρωποι ἐκ ποινηλασίας ἐπὶ τὰ χείριστα τῶν πταισμάτων ὀλισθήσουσιν.",
+    "07/31":"οὐκ ἐστὶ σήμερον βροντοσκοπία.",
 
     "08/01":"Ἐὰν βροντήσῃ, καὶ τὰ τῆς πολιτείας ἠρέμα πως καλλίονα καὶ εὐθηνία ἔσται.",
     "08/02":"ἐὰν βροντήσῃ, νόσους ἅμα καὶ ἔνδειαν τῶν ἐπιτηδείων ἀπειλεῖ.",
@@ -621,6 +632,7 @@ let grkCalendar = {
     "08/28":"ἐὰν βροντήσῃ, εὐθηνίαν μὲν τῶν καρπῶν, φθορὰν δὲ τῶν βοῶν σημαίνει.",
     "08/29":"ἐὰν βροντήσῃ, οὐδεμίαν ἐναλλαγὴν σημαίνει.",
     "08/30":"ἐὰν βροντήσῃ, νόσους τῇ πόλει, ἐφ’ ἧς ῥαγήσεται, ἀπειλεῖ.",
+    "08/31":"οὐκ ἐστὶ σήμερον βροντοσκοπία.",
     
     "09/01":"Ἐὰν βροντήσῃ, εὐετηρίαν ἅμα καὶ εὐφροσύνην δηλοῖ.",
     "09/02":"ἐὰν βροντήσῃ, διχόνοια τῷ δήμῳ ἔσται.",
@@ -683,6 +695,7 @@ let grkCalendar = {
     "10/28":"εἰ βροντήσῃ, ἔνδεια ἔσται τῶν ἀναγκαίων.",
     "10/29":"εἰ βροντήσῃ, ἐπίνοσος ὁ ἐνιαυτός.",
     "10/30":"εἰ βροντήσῃ, οὐκ εὐθηνίαν μόνον ἀλλὰ καὶ ἐλάττωσιν τῶν πολεμίων καὶ εὐφροσύνην τοῖς πράγμασι δηλοῖ.",
+    "10/31":"οὐκ ἐστὶ σήμερον βροντοσκοπία.",
     
     "11/01":"Εἰ βροντήσῃ, διχόνοιαν δηλοῖ τῇ πόλει.",
     "11/02":"εἰ βροντήσῃ, εὐθηνίαν προλέγει.",
@@ -745,6 +758,5 @@ let grkCalendar = {
     "12/28":"εἰ βροντήσῃ, ἀκρίδων γένεσις.",
     "12/29":"εἰ βροντήσῃ, ἰσχνότητα τοῖς σώμασιν ὑγιεινὴν δηλοῖ.",
     "12/30":"εἰ βροντήσῃ, ἀνταρσίαν κατὰ τῆς βασιλείας δηλοῖ καὶ εἰκότως πόλεμον.",
-
-
+    "12/31":"οὐκ ἐστὶ σήμερον βροντοσκοπία."
 }
