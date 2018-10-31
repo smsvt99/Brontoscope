@@ -78,10 +78,10 @@
 
         }
 
-        a {
+        /* a {
             text-decoration: none;
             color: black;
-        }
+        } */
 
         #today {
             background-color: black;
@@ -161,7 +161,9 @@
             <br><br>
             <code id='url'>https://glacial-sierra-69558.herokuapp.com/api/&lt;mm-dd&gt;</code>
             <br><br>
-            For example, a request to https://glacial-sierra-69558.herokuapp.com/api/04-27 yields the folllowing:
+            For example, a request to<br><br> 
+            <code><a href='https://glacial-sierra-69558.herokuapp.com/api/04-27'>https://glacial-sierra-69558.herokuapp.com/api/04-27<a></code><br><br>
+             yields the following JSON response:
             <br><br>
             <code>
             {<br>
@@ -169,7 +171,35 @@
                 &emsp;&emsp;“english":“If it thunders, omens from the sky incredibly shall be revealed.",<br>
                 &emsp;&emsp;“greek":“εἰ βροντήσῃ, διοσημεία παράδοξος ὀφθήσεται."<br>
             }</code><br><br>
-            neat!
+            Here is an example use of the API to get today's brontoscope<br><br>
+            <code>
+                    function getDate(){<br>
+                        &emsp;&emsp;var today = new Date();<br>
+                        &emsp;&emsp;var dd = today.getDate();<br>
+                        &emsp;&emsp;var mm = today.getMonth() + 1;<br>
+                        &emsp;&emsp;if (dd &lt; 10) {<br>
+                            &emsp;&emsp;&emsp;&emsp;dd = '0' + dd;<br>
+                        &emsp;&emsp;}<br>
+                        &emsp;&emsp;if (mm &lt; 10) {<br>
+                            &emsp;&emsp;&emsp;&emsp;mm = '0' + mm;<br>
+                            &emsp;&emsp;}<br>
+                            &emsp;&emsp;today = mm + "-" + dd;<br>
+                            &emsp;&emsp;doFetch(today);<br>
+                      }<br>
+                      <br>
+                      function doFetch(date){<br>
+                        &emsp;&emsp;fetch('https://glacial-sierra-69558.herokuapp.com/api/' + date)<br>
+                        &emsp;&emsp;&emsp;&emsp;.then(function(response) {<br>
+                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return response.json();<br>
+                        &emsp;&emsp;})<br>
+                        &emsp;&emsp;&emsp;&emsp;.then(function(myJson) {<br>
+                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;console.log(myJson);<br>
+                            &emsp;&emsp;});<br>
+                      }<br>
+                      getDate();
+            </code>
+            <br>
+            You can see a simple game made with this code on <a href="https://codepen.io/smsvt99/pen/JmgPEm?editors=1011">CodePen</a>
         </p>
     </div>
     <div id="date" class="label"></div>
