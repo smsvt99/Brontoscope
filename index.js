@@ -15,6 +15,7 @@ app.get('/',function(req, res){
 });
 
 app.get('/api/:date', function(req, res) {
+    res.set('Access-Control-Allow-Origin', '*')
     res.json({ 
         date: req.params.date,
         english: calendar.english[req.params.date],

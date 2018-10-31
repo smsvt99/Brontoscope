@@ -19,6 +19,13 @@ function clickToday() {
     document.getElementById("date").style = "display: block;"
     document.getElementById("today").style = "background-color: black; color: seashell;"
 }
+function clickApi(){
+    toggleHamburger();
+    normalizeButtons();
+    hideEverything();
+    document.getElementById("apiDiv").style = "display: block;"
+    document.getElementById("api").style = "background-color: black; color: seashell;"
+}
 
 function clickLemmaSearch() {
     toggleHamburger();
@@ -58,6 +65,7 @@ function normalizeButtons() {
     document.getElementById("dateSearch").style = "background-color: lightblue; color: black;";
     document.getElementById("forecast").style = "background-color: lightblue; color: black;";
     document.getElementById("learnMore").style = "background-color: lightblue; color: black;";
+    document.getElementById("api").style = "background-color: lightblue; color: black;";
 }
 
 function hideEverything() {
@@ -67,6 +75,8 @@ function hideEverything() {
     document.getElementById("forecastDiv").style = "display:none"
     document.getElementById("learnMoreDiv").style = "display:none"
     document.getElementById("date").style = "display:none"
+    document.getElementById("apiDiv").style = "display:none"
+
 }
 
 var today = new Date();

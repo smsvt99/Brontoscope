@@ -73,7 +73,7 @@
             line-height: 2em;
             border: 1px black solid;
             background-color: lightblue;
-            width: 200px;
+            width: 180px;
             text-align: center;
 
         }
@@ -126,6 +126,18 @@
         #learnMoreDiv{
             line-height: 1.5;   
         }
+        #apiDiv{
+            display: none;
+        }
+        code{
+            background-color: white;
+            border: 1px black solid;
+            padding: 5px;
+            line-height: 1.5;
+            display: block;
+        }
+      
+       
     </style>
 </head>
 
@@ -140,8 +152,25 @@
             <div class="button" id="lemmaSearch" onclick="clickLemmaSearch()">Search by Word</div>
             <div class="button" id="dateSearch" onclick="clickDateSearch()">Search by Date</div>
             <div class="button" id="forecast" onclick="clickForecast()">Local Forecast</div>
+            <div class="button" id='api' onclick="clickApi()">API</div>
             <div class="button" id="learnMore" onclick="clickLearnMore()">Learn More</div>
         </div>
+    </div>
+    <div id="apiDiv" class="mainBox">
+        <p id="apiText">You can make GET requests to this page to receive entries in JSON using the following format:
+            <br><br>
+            <code id='url'>https://glacial-sierra-69558.herokuapp.com/api/&lt;mm-dd&gt;</code>
+            <br><br>
+            For example, a request to https://glacial-sierra-69558.herokuapp.com/api/04-27 yields the folllowing:
+            <br><br>
+            <code>
+            {<br>
+                &emsp;&emsp;“date":“04-27",<br>
+                &emsp;&emsp;“english":“If it thunders, omens from the sky incredibly shall be revealed.",<br>
+                &emsp;&emsp;“greek":“εἰ βροντήσῃ, διοσημεία παράδοξος ὀφθήσεται."<br>
+            }</code><br><br>
+            neat!
+        </p>
     </div>
     <div id="date" class="label"></div>
     <div id="todayDiv" class='mainBox'>
